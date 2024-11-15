@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import IndustryGrid from './components/IndustryGrid';
+import RealEstate from './components/RealEstate';
+import Retail from'./components/Retail';
+import HealthCare from './components/HealthCare';
+import RpmCalculator from './components/RpmCalculator';
+import RoiResults from './components/RoiResults';
+import Transportation from './components/Transportation';
+import Manufacturing from './components/Manufacturing';
+import Agriculture from './components/Agriculture';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<IndustryGrid />} />
+          <Route path="/realestate" element={<RealEstate />} />
+          <Route path="/retail" element={<Retail />} />
+          <Route path="/manufacturing" element={<Manufacturing />} />
+          <Route path="/HealthCare" element={<HealthCare />} />
+          <Route path="/Agriculture" element={<Agriculture />} />
+          <Route path="/Transportation" element={<Transportation />} />
+          <Route path="/RpmCalculator" element={<RpmCalculator />} />
+          
+          <Route path="/RoiResults" element={<RoiResults />} />
+
+          {/* Add more routes as needed */}
+        </Routes>
+      </main>
+      <Footer />
     </div>
+  </Router>
   );
 }
 
