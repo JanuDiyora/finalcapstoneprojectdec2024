@@ -22,13 +22,20 @@ function App() {
         <Routes>
           <Route path="/" element={<IndustryGrid />} />
           <Route path="/realestate" element={<RealEstate />} />
-          <Route path="/retail" element={<Retail />} />
-          <Route path="/manufacturing" element={<Manufacturing />} />
-          <Route path="/HealthCare" element={<HealthCare />} />
-          <Route path="/Agriculture" element={<Agriculture />} />
-          <Route path="/Transportation" element={<Transportation />} />
-          <Route path="/RpmCalculator" element={<RpmCalculator />} />
-          
+            <Route path="/retail" element={<Retail />} />
+            <Route path="/manufacturing" element={<Manufacturing />} />
+            {/* <Route path="/HealthCare" element={<HealthCare />} /> */}
+            <Route
+              path="/healthcare/healthcare-list"
+              element={() => {
+                window.location.href = "http://localhost:8080/healthcare/healthcare-list";
+                return null;
+              }}
+            />
+            <Route path="/Agriculture" element={<Agriculture />} />
+            <Route path="/Transportation" element={<Transportation />} />
+            <Route path="/RpmCalculator" element={<RpmCalculator />} />
+
           <Route path="/RoiResults" element={<RoiResults />} />
 
           {/* Add more routes as needed */}
