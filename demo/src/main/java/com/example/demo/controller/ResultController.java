@@ -1,14 +1,21 @@
 package com.example.demo.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.demo.model.ROIRequest;
+import com.example.demo.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.Map;
+
+@RestController
+@RequestMapping("/results")
 public class ResultController {
 
-    @GetMapping("/roi-results")
-    public String showResults(Model model) {
-        return "roi-results";
+    @Autowired
+    private ItemService itemService;
+
+    @PostMapping("/calculate-roi")
+    public Map<String, Object> calculateROI(@RequestBody ROIRequest roiRequest) {
+        return itemService.calculateROI(roiRequest);
     }
 }

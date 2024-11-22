@@ -1,55 +1,53 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ROIRequest;
-import com.example.demo.model.SmartStore;
-import com.example.demo.service.SmartStoreService;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.model.Item;
+import com.example.demo.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
 public class SmartStoreController {
 
-    private final SmartStoreService smartStoreService;
-
-    public SmartStoreController(SmartStoreService smartStoreService) {
-        this.smartStoreService = smartStoreService;
-    }
+    @Autowired
+    private ItemService itemService;
 
     @GetMapping
     public String home() {
-        return "home";
+        return "home"; // Ensure "home.html" exists in the templates
     }
 
     @GetMapping("/category")
     public String showCategory(@RequestParam("category") String category, Model model) {
-        List<SmartStore> devices = smartStoreService.getDevicesByCategory(category);
-        model.addAttribute("category", category);
-        model.addAttribute("devices", devices);
+        List<Item> items = itemService.getItemsByCategory(category);
+        model.addAttribute("items", items);
+        model.addAttribute("categoryName", category); // Pass the category name
         return "category";
     }
 
+
+
+
+
     @PostMapping("/calculate-roi")
-    public ResponseEntity<Map<String, Object>> calculateROI(@RequestBody ROIRequest roiRequest) {
-        double totalCost = 10000.0;
-        List<Integer> quantities = roiRequest.getQuantities();
-        double totalRevenue = smartStoreService.calculateRevenue(roiRequest.getCategory(), quantities);
+    public String calculateROI(
+            @RequestParam("itemIds") List<Integer> itemIds,
+            @RequestParam("quantities") List<Integer> quantities,
+            @RequestParam("years") int years,
+            Model model) {
 
-        double netReturn = totalRevenue - totalCost;
-        double roiPercentage = (netReturn / totalCost) * 100;
+        double totalCost = itemService.calculateTotalCost(itemIds, quantities);
+        double totalRevenue = itemService.calculateRevenue(itemIds, quantities, years);
+        double roiPercentage = (totalRevenue - totalCost) / totalCost * 100;
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("totalCost", totalCost);
-        response.put("totalRevenue", totalRevenue);
-        response.put("netReturn", netReturn);
-        response.put("roiPercentage", roiPercentage);
+        model.addAttribute("totalCost", totalCost);
+        model.addAttribute("totalRevenue", totalRevenue);
+        model.addAttribute("roiPercentage", roiPercentage);
 
-        return ResponseEntity.ok(response);
+        return "roi-results"; // Ensure the "roi-results.html" template exists
     }
 }

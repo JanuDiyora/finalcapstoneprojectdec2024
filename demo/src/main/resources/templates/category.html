@@ -1,107 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title th:text="${category} + ' ROI Calculation'">ROI Calculation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        .input-box {
-            width: 60px;
-        }
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items in [[${category}]]</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1 th:text="${category} + ' ROI Calculation'"></h1>
-    <form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Device Type</th>
-                    <th>Default Quantity</th>
-                    <th>Custom Quantity</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="device : ${devices}">
-                    <td th:text="${device.deviceType}"></td>
-                    <td th:text="${device.defaultQuantity}"></td>
-                    <td>
-                        <input class="input-box" type="number" name="quantities" min="0" value="1" required>
-                    </td>
-                    <td th:text="${device.description}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="button-container">
-            <label for="investmentPeriod">Investment Period (Years):</label>
-            <input class="input-box" type="number" name="investmentPeriod" id="investmentPeriod" min="1" value="5" required>
-            <button type="button" id="calculate-btn">Calculate ROI</button>
+	<h1>Items in [[${categoryName}]]</h1>
+    <form action="/calculate-roi" method="post">
+        <input type="hidden" name="category" th:value="${category}">
+        <div class="item-list">
+            <ul>
+                <li th:each="item : ${items}">
+                    <b th:text="${item.name}"></b><br>
+                    <p th:text="${item.description}"></p>
+                    <label>Quantity:</label>
+                    <input type="hidden" name="itemIds" th:value="${item.id}">
+                    <input type="number" name="quantities" value="1" min="0"><br>
+                </li>
+            </ul>
         </div>
+        <div class="form-group">
+            <label for="years">Investment Period (Years):</label>
+            <input type="number" id="years" name="years" value="1" min="1">
+        </div>
+        <button type="submit" class="submit-btn">Calculate ROI</button>
     </form>
-
-    <script>
-        document.getElementById('calculate-btn').addEventListener('click', async () => {
-            const quantities = Array.from(document.querySelectorAll('[name="quantities"]')).map(input => parseInt(input.value, 10));
-            const investmentPeriod = document.querySelector('[name="investmentPeriod"]').value;
-            const category = document.querySelector('h1').innerText.split(' ROI')[0];
-
-            const data = {
-                quantities,
-                investmentPeriod: parseInt(investmentPeriod, 10),
-                category,
-            };
-
-            try {
-                const response = await fetch('/calculate-roi', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                const result = await response.json();
-                localStorage.setItem('roiData', JSON.stringify({ ...result, investmentPeriod: data.investmentPeriod }));
-                window.location.href = "/roi-results";
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to calculate ROI. Please try again.');
-            }
-        });
-    </script>
 </body>
 </html>

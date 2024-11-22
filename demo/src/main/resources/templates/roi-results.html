@@ -1,94 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ROI Results</title>
-	<style>
-	        body {
-	            font-family: Arial, sans-serif;
-	            margin: 20px;
-	            background-color: #f9f9f9;
-	        }
-	        h1 {
-	            text-align: center;
-	            margin-bottom: 20px;
-	        }
-	        table {
-	            width: 60%;
-	            margin: 0 auto;
-	            border-collapse: collapse;
-	            background-color: white;
-	            border-radius: 8px;
-	            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-	        }
-	        th, td {
-	            padding: 10px 15px;
-	            text-align: left;
-	            border-bottom: 1px solid #ddd;
-	        }
-	        th {
-	            background-color: #f4f4f4;
-	        }
-	        .chart-container {
-	            width: 60%;
-	            margin: 20px auto;
-	        }
-	        canvas {
-	            width: 100%;
-	            height: 300px;
-	        }
-	        .button-container {
-	            text-align: center;
-	            margin-top: 20px;
-	        }
-	        button {
-	            padding: 10px 20px;
-	            font-size: 16px;
-	            background-color: #007bff;
-	            color: white;
-	            border: none;
-	            border-radius: 5px;
-	            cursor: pointer;
-	        }
-	        button:hover {
-	            background-color: #0056b3;
-	        }
-	    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI Results for [[${category}]]</title>
+    <link rel="stylesheet" href="/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-btn, .print-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            background-color: #f44336;
+        }
+        .print-btn {
+            background-color: #4CAF50;
+        }
+        .results-chart {
+            margin: 30px auto;
+            max-width: 600px;
+        }
+    </style>
 </head>
 <body>
-    <h1>ROI Results</h1>
-    <table>
-        <tr><th>Description</th><th>Amount (USD)</th></tr>
-        <tr><td>Total Investment Costs</td><td id="totalCost"></td></tr>
-        <tr><td>Total Net Benefit Over the Investment Period</td><td id="totalRevenue"></td></tr>
-        <tr><td>Investment Period (Years)</td><td id="investmentPeriod"></td></tr>
-        <tr><td>ROI (%)</td><td id="roiPercentage"></td></tr>
+    <h1>ROI Results <span th:text="${category}">Category Name</span></h1>
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Total Cost</td>
+                <td th:text="${totalCost}"></td>
+            </tr>
+            <tr>
+                <td>Total Revenue</td>
+                <td th:text="${totalRevenue}"></td>
+            </tr>
+            <tr>
+                <td>ROI Percentage</td>
+                <td th:text="${roiPercentage} + '%'"></td>
+            </tr>
+        </tbody>
     </table>
-	<div class="chart-container">
-	        <canvas id="roiChart"></canvas>
-	    </div>
-		<div class="button-container">
-		    <button onclick="window.location.href='/form'">Back to Form</button>
-		</div>
-    <script>
-        const data = JSON.parse(localStorage.getItem('roiData'));
-        document.getElementById('totalCost').innerText = data.totalCost + ' USD';
-        document.getElementById('totalRevenue').innerText = data.totalRevenue + ' USD';
-        document.getElementById('investmentPeriod').innerText = data.investmentPeriod;
-        document.getElementById('roiPercentage').innerText = data.roiPercentage.toFixed(2) + '%';
 
-		const ctx = document.getElementById("roiChart").getContext("2d");
-        new Chart(document.getElementById('roiChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Total Investment Costs', 'Total Net Benefit'],
-                datasets: [{
-                    label: 'ROI Analysis',
-                    data: [data.totalCost, data.totalRevenue],
-                    backgroundColor: ['red', 'green']
-                }]
-            }
+    <!-- Graph -->
+    <canvas id="roiChart" class="results-chart"></canvas>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <a href="http://localhost:3000/retail" class="back-btn">Go Back</a>
+        <button onclick="printPage()" class="print-btn">Print Report</button>
+    </div>
+
+    <script>
+        // Chart.js configuration
+        document.addEventListener('DOMContentLoaded', function () {
+            const totalCost = parseFloat([[${totalCost}]]);
+            const totalRevenue = parseFloat([[${totalRevenue}]]);
+            const ctx = document.getElementById('roiChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Cost', 'Total Revenue'],
+                    datasets: [{
+                        label: 'Amount ($)',
+                        data: [totalCost, totalRevenue],
+                        backgroundColor: ['#f44336', '#4CAF50'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
         });
+
+        // Print functionality
+        function printPage() {
+            window.print();
+        }
     </script>
 </body>
 </html>
