@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Fleet Transportation ROI Calculation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 3500px;
+            margin: 0 auto;
+            padding-top: 4px;
+        }
+
+        #form {
+            padding-top: 350px;
+            padding-left: 500px;
+            max-width: 4500px;
+            width: 1800px;
+        }
+
+        #insideForm {
+            width: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar/Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/api/placeholder/150/50" alt="Gokaddal Technologies" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Find Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Find Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SME Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Industries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Knowledge Base</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                </ul>
+                <button class="btn btn-outline-primary ms-2 btn-sm">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form -->
+    <div class="container mt-5 content-container" id="form">
+        <form action="/fleet/calculate" method="post" id="insideForm">
+            <h2>Enter Fleet Information</h2>
+            
+            <fieldset class="mt-4">
+                <legend>Vehicle Information</legend>
+                <div class="form-group">
+                    <label for="heavyVehicles">Number of Heavy Vehicles:</label>
+                    <input type="number" id="heavyVehicles" name="heavyVehicles" min="0" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="lightVehicles">Number of Light Vehicles:</label>
+                    <input type="number" id="lightVehicles" name="lightVehicles" min="0" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="distancePerVehicle">Distance per Vehicle per Day (km):</label>
+                    <input type="number" id="distancePerVehicle" name="distancePerVehicle" min="0" class="form-control">
+                </div>
+            </fieldset>
+            
+            <fieldset class="mt-4">
+                <legend>Augmented Reality Navigation</legend>
+                <div class="form-group">
+                    <label for="arNavigation">Select AR Navigation Feature:</label>
+                    <select id="arNavigation" name="arNavigation" class="form-control">
+                        <option value="arOverlay">AR Navigation Overlays</option>
+                        <option value="realTimeTraffic">Real-Time Traffic Data</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <fieldset class="mt-4">
+                <legend>Security and Anti-Theft Devices</legend>
+                <div class="form-group">
+                    <label for="security">Select Security System:</label>
+                    <select id="security" name="security" class="form-control">
+                        <option value="smartLocks">Smart Locks</option>
+                        <option value="gpsTracking">GPS Tracking Systems</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <fieldset class="mt-4">
+                <legend>Costs and Financials</legend>
+                <div class="form-group">
+                    <label for="hos">Average Traffic Tickets:</label>
+                    <input type="text" id="hos" name="hos" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="fuelCost">Cost of Fuel:</label>
+                    <input type="number" id="fuelCost" name="fuelCost" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="avenue">Revenue Generated:</label>
+                    <input type="text" id="avenue" name="avenue" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="totalInvestment">Total Investment:</label>
+                    <input type="number" id="totalInvestment" name="totalInvestment" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="driverWages">Driver Wages:</label>
+                    <input type="text" id="driverWages" name="driverWages" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" class="form-control">
+                </div>
+            </fieldset>
+            
+            <button type="submit" class="btn btn-primary mt-4">Calculate ROI</button>
+            <div class="button-group mt-4">
+                <a href="http://localhost:3000/transportation" class="btn btn-secondary">Back to Main Page</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

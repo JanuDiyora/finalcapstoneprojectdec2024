@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Electric Vehicle Infrastructure Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS (if needed) -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Ensure the navbar is at the top and spans the full width */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            width: 100%;
+        }
+
+        /* Form container adjustment */
+        .container {
+            max-width: 3500px; /* Set a max width for the form */
+            margin: 0 auto; /* Horizontally center the form */
+            padding-top: 4px; /* Add some top padding to ensure it doesn't get hidden behind the navbar */
+        }
+
+		#form {
+
+			padding-top: 350px;
+			padding-left: 500px;
+			max-width: 4500px;
+			width: 1800px;
+		
+		}
+		
+		#insideForm {
+			width: 1500px;
+		}
+        
+    </style>
+</head>
+<body>
+    <!-- Navbar/Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="/api/placeholder/150/50" alt="Gokaddal Technologies" height="30">
+            </a>
+            <!-- Navbar Toggle Button (for mobile responsiveness) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Find Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Find Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SME Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Knowledge Base</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Support</a>
+                    </li>
+                </ul>
+                <!-- Sign Up Button -->
+                <button class="btn btn-outline-primary ms-2 btn-sm">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form for Smart Electric Vehicle Infrastructure -->
+    <div class="container mt-5 content-container" id="form">
+        <form action="/electricVehiclesInfraResult" method="post" id="insideForm">
+            <h2>Enter Electric Vehicle Infrastructure Information</h2>
+
+            <!-- Charging Station Information -->
+            <fieldset class="mt-4">
+                <legend>Charging Station Information</legend>
+                <div class="form-group">
+                    <label for="smartChargingStation">Number of Smart Charging Stations:</label>
+                    <input type="number" id="smartChargingStation" name="smartChargingStation" min="0" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="numberOfEquipments">Number of Equipments per Station:</label>
+                    <input type="number" id="numberOfEquipments" name="numberOfEquipments" min="0" class="form-control">
+                </div>
+            </fieldset>
+
+            <!-- Select Smart Devices -->
+            <fieldset class="mt-4">
+                <legend>Select Smart Devices</legend>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart meters" class="form-check-input">
+                    <label class="form-check-label" for="smartMeters">Smart Meters</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Energy Storage Systems (Batteries)" class="form-check-input">
+                    <label class="form-check-label" for="energyStorage">Energy Storage Systems (Batteries)</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart Load Management Systems" class="form-check-input">
+                    <label class="form-check-label" for="smartLoadManagement">Smart Load Management Systems</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart Grids and Vehicle-to-Grid (V2G) Technology" class="form-check-input">
+                    <label class="form-check-label" for="smartGrids">Smart Grids and Vehicle-to-Grid (V2G) Technology</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Solar Panels with Smart Integration" class="form-check-input">
+                    <label class="form-check-label" for="solarPanels">Solar Panels with Smart Integration</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart Payment and Billing Systems" class="form-check-input">
+                    <label class="form-check-label" for="smartBilling">Smart Payment and Billing Systems</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart Parking Sensors" class="form-check-input">
+                    <label class="form-check-label" for="smartParking">Smart Parking Sensors</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Real-Time Monitoring and Diagnostic Tools" class="form-check-input">
+                    <label class="form-check-label" for="realTimeMonitoring">Real-Time Monitoring and Diagnostic Tools</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="User Identification Systems" class="form-check-input">
+                    <label class="form-check-label" for="userIdentification">User Identification Systems</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart Charging Cables" class="form-check-input">
+                    <label class="form-check-label" for="smartChargingCables">Smart Charging Cables</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="devices" value="Smart HVAC Systems for Charging Stations" class="form-check-input">
+                    <label class="form-check-label" for="smartHVAC">Smart HVAC Systems for Charging Stations</label>
+                </div>
+            </fieldset>
+
+            <!-- Costs and Financials -->
+            <fieldset class="mt-4">
+                <legend>Costs and Financials</legend>
+                <div class="form-group">
+                    <label for="avenue">Avenue:</label>
+                    <input type="text" id="avenue" name="avenue" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="totalInvestment">Total Investment:</label>
+                    <input type="number" id="totalInvestment" name="totalInvestment" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" class="form-control">
+                </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+
+            <!-- Back Button -->
+            <div class="button-group mt-4">
+                <a href="http://localhost:3000/transportation" class="btn btn-secondary">Back to Main Page</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Management ROI Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 3500px;
+            margin: 0 auto;
+            padding-top: 4px;
+        }
+
+        #form {
+            padding-top: 700px;
+            padding-left: 500px;
+            max-width: 4500px;
+            width: 1800px;
+        }
+
+        #insideForm {
+            width: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar/Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/api/placeholder/150/50" alt="Gokaddal Technologies" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Find Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Find Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SME Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Industries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Knowledge Base</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                </ul>
+                <button class="btn btn-outline-primary ms-2 btn-sm">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form -->
+    <div class="container mt-5 content-container" id="form">
+        <form action="/smartTrafficResult" method="post" id="insideForm">
+            <h2>Enter Smart Traffic Management Information</h2>
+
+            <fieldset class="mt-4">
+                <legend>Equipment Costs</legend>
+                <div class="form-group">
+                    <label for="intersections">Number of Intersections:</label>
+                    <input type="number" id="intersections" name="intersections" min="0" class="form-control">
+                </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+                <legend>Select Technology</legend>
+                <div class="form-group">
+                    <label for="technology">Technology:</label>
+                    <select id="technology" name="technology" class="form-control">
+                        <option value="basicSystem">Basic System</option>
+                        <option value="aiBasedSystem">AI-Based System</option>
+                        <option value="iotSystem">IoT-Enabled System</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+                <legend>Sensor Features</legend>
+                <div class="form-group">
+                    <label for="sensorType">Type of Sensor:</label>
+                    <select id="sensorType" name="sensorType" class="form-control" required>
+                        <option value="radar">Radar</option>
+                        <option value="videoCameras">Video Cameras</option>
+                        <option value="magnetic">Magnetic</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+                <legend>Environmental Incentives</legend>
+                <div class="form-group">
+                    <label for="co2Before">CO₂ Emissions Before System (tons/year):</label>
+                    <input type="number" id="co2Before" name="co2Before" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="co2After">CO₂ Emissions After System (tons/year):</label>
+                    <input type="number" id="co2After" name="co2After" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="carbonCredit">Carbon Credit Value (per ton):</label>
+                    <input type="number" id="carbonCredit" name="carbonCredit" step="0.01" class="form-control">
+                </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+                <legend>Fuel Savings</legend>
+                <div class="form-group">
+                    <label for="fuelPrice">Fuel Price (per gallon):</label>
+                    <input type="number" id="fuelPrice" name="fuelPrice" step="0.01" class="form-control">
+                </div>
+                <p>Idle Reduction: <strong>1 hour/day/vehicle</strong></p>
+                <p>Number of Vehicles: <strong>5000</strong></p>
+                <p>Average Fuel Consumption: <strong>0.5 gallons/hour</strong></p>
+            </fieldset>
+
+            <fieldset class="mt-4">
+                <legend>Costs and Financials</legend>
+                <div class="form-group">
+                    <label for="governmentSubsidy">Government Subsidy:</label>
+                    <input type="number" id="governmentSubsidy" name="governmentSubsidy" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="totalInvestment">Total Investment:</label>
+                    <input type="number" id="totalInvestment" name="totalInvestment" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="avenue">Avenue:</label>
+                    <input type="number" id="avenue" name="avenue" step="0.01" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" class="form-control">
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            <div class="button-group mt-4">
+                <a href="http://localhost:3000/transportation" class="btn btn-secondary">Back to Main Page</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

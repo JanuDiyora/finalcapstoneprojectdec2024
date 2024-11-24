@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ROI Results Showcase</title>
+    <link rel="stylesheet" href="/css/result.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Remote Fleet Transportation ROI Calculation</h1>
+        </header>
+
+        <section class="results-section">
+            <div class="table-container">
+                <h2>Results:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Investment Costs</td>
+                            <td th:text="${totalInvestment}"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Annual Revenue</td>
+                            <td th:text="${totalAvenue}"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Operational Cost</td>
+                            <td th:text="${totalOperationalCost}"></td>
+                        </tr>
+                        <tr>
+                            <td>ROI (%)</td>
+                            <td th:text="${roi} + '%'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="button-group">
+                    <a href="/fleet/fleetform" class="button">Back to Form</a>
+                    <button onclick="generatePDF()" class="button">Create Report (PDF)</button>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="roiChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script th:inline="javascript">
+        // Chart.js configuration
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        const roiChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Total Investment Costs', 'Annual Operating Costs', 'Total Annual Benefits'],
+                datasets: [{
+                    label: 'Amount ($)',
+                    data: [
+                        [[${totalInvestment}]], 
+                        [[${totalAvenue}]], 
+                        [[${totalOperationalCost}]]
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Placeholder function for generating PDF
+        function generatePDF() {
+			const { jsPDF } = window.jspdf;
+
+			           // Create a new jsPDF instance
+			           const doc = new jsPDF();
+
+			           // Add title
+			           doc.setFontSize(18);
+			           doc.text("Remote Fleet Transportation ROI Calculation", 20, 20);
+
+			           // Add table content
+			           const tableContent = [
+			               ["Description", "Amount ($)"],
+			               ["Total Investment Costs", document.querySelector('#resultsTable tbody tr:nth-child(1) td:nth-child(2)').innerText],
+			               ["Total Annual Revenue", document.querySelector('#resultsTable tbody tr:nth-child(2) td:nth-child(2)').innerText],
+			               ["Total Operational Cost", document.querySelector('#resultsTable tbody tr:nth-child(3) td:nth-child(2)').innerText],
+			               ["ROI (%)", document.querySelector('#resultsTable tbody tr:nth-child(4) td:nth-child(2)').innerText],
+			           ];
+
+			           // AutoTable plugin to generate table
+			           doc.autoTable({
+			               head: [tableContent[0]],
+			               body: tableContent.slice(1),
+			               startY: 30,
+			               theme: 'striped'
+			           });
+
+			           // Add chart as an image
+			           const chartCanvas = document.getElementById('roiChart');
+			           const chartImage = chartCanvas.toDataURL('image/png');
+
+			           doc.addPage();
+			           doc.text("ROI Chart", 20, 20);
+			           doc.addImage(chartImage, 'PNG', 20, 30, 180, 90);  // Adjust the size as needed
+
+			           // Save PDF
+			           doc.save('ROI_Report.pdf');
+		}
+    </script>
+</body>
+</html>
