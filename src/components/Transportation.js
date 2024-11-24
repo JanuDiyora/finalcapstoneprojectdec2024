@@ -15,32 +15,32 @@ function Transportation() {
           <IndustryCard 
             title="Smart Traffic Management" 
             icon={<MdTraffic size={50} style={{ color: '#FF5722' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/smartTrafiicForm" 
           />
           <IndustryCard 
             title="Smart Public Transit" 
             icon={<MdCommute size={50} style={{ color: '#4CAF50' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/publicTransitform" 
           />
           <IndustryCard 
             title="Fleet Management" 
             icon={<FaBicycle size={50} style={{ color: '#2196F3' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/fleet/fleetform" 
           />
           <IndustryCard 
             title="Smart Parking" 
             icon={<FaParking size={50} style={{ color: '#FFC107' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/publicParkingForm" 
           />
           <IndustryCard 
             title="Electric Vehicle Charging Infrastructure" 
             icon={<MdElectricCar size={50} style={{ color: '#8BC34A' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/electricVehicleInfra" 
           />
           <IndustryCard 
             title="Autonomous Vehicle Support" 
             icon={<MdDirectionsCar size={50} style={{ color: '#9C27B0' }} />} 
-            link="/RPMCalculator" 
+            link="http://localhost:8015/" 
           />
         </div>
       </div>
