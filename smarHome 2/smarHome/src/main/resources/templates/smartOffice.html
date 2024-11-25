@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Office ROI Calculator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+		<form action="/officeResult" method="post">
+        <h2>Smart Office ROI Calculator</h2>
+
+        <fieldset>
+            <legend>Office Information</legend>
+            <div class="form-group">
+                <label for="units">Number of Units (Office Size/Rooms):</label>
+                <input type="number" id="units" name="units" value="10" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Smart Devices</legend>
+            <div class="form-group">
+                <label for="hvacDefault">Number of Smart HVAC Systems:</label>
+                <input type="number" id="hvacDefault" name="hvacDefault" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="assistantsDefault">Number of Voice-Controlled Assistants:</label>
+                <input type="number" id="assistantsDefault" name="assistantsDefault" value="2" min="0">
+            </div>
+            <div class="form-group">
+                <label for="desksDefault">Number of Smart Desks:</label>
+                <input type="number" id="desksDefault" name="desksDefault" value="10" min="0">
+            </div>
+            <div class="form-group">
+                <label for="appliancesDefault">Number of Smart Appliances:</label>
+                <input type="number" id="appliancesDefault" name="appliancesDefault" value="2" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Costs and Financials</legend>
+            <div class="form-group">
+                <label for="avenue">Avenue:</label>
+                <input type="text" id="avenue" name="avenue">
+            </div>
+            <div class="form-group">
+                <label for="totalInvestment">Total Investment:</label>
+                <input type="number" id="totalInvestment" name="totalInvestment" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year">
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

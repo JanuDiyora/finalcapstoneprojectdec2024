@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quality Control Automation ROI Results</title>
+    <link rel="stylesheet" href="/css/result.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quality Control Automation ROI Results</h1>
+        </header>
+
+        <section class="results-section">
+            <div class="table-container">
+                <h2>Results:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Investment Cost</td>
+                            <td th:text="${investmentCost}"></td>
+                        </tr>
+                        <tr>
+                            <td>Operating Cost</td>
+                            <td th:text="${operatingCost}"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Annual Benefits</td>
+                            <td th:text="${annualBenefits}"></td>
+                        </tr>
+                        <tr>
+                            <td>Downtime Hours Saved</td>
+                            <td th:text="${downtimeHoursSaved}"></td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance Cost Savings</td>
+                            <td th:text="${maintenanceCostSavings}"></td>
+                        </tr>
+                        <tr>
+                            <td>ROI (%)</td>
+                            <td th:text="${roiPercentage} + '%'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="button-group">
+                    <a href="/QualityControlAutomation" class="button">Back to Form</a>
+                    <button onclick="generatePDF()" class="button">Create Report (PDF)</button>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="roiChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script th:inline="javascript">
+        // Chart.js configuration for Quality Control Automation ROI
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        const roiChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Investment Cost', 
+                    'Operating Cost', 
+                    'Annual Benefits', 
+                    'Downtime Hours Saved', 
+                    'Maintenance Savings'
+                ],
+                datasets: [{
+                    label: 'Amount ($)',
+                    data: [
+                        /* Thymeleaf expressions replaced with actual values from the controller */
+                        [[${investmentCost}]], 
+                        [[${operatingCost}]], 
+                        [[${annualBenefits}]], 
+                        [[${downtimeHoursSaved}]], 
+                        [[${maintenanceCostSavings}]]
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Placeholder function for generating PDF
+        function generatePDF() {
+            alert("This will generate a PDF report (Implementation required)");
+        }
+    </script>
+</body>
+</html>

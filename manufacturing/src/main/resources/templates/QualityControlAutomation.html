@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control Automation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        .form-title {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-title">Quality Control Automation</h1>
+        <form action="/QualityControlAutomationResult" method="post">
+            <!-- Inspection Details -->
+            <fieldset class="mt-4">
+                <legend>Inspection Details</legend>
+                <div class="mb-3">
+                    <label for="inspectionType" class="form-label">Inspection Type:</label>
+                    <select id="inspectionType" name="inspectionType" class="form-control">
+                        <option value="Visual">Visual</option>
+                        <option value="Automated">Automated</option>
+                        <option value="Sample-based">Sample-based</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="defectCount" class="form-label">Defect Count:</label>
+                    <input type="number" id="defectCount" name="defectCount" class="form-control" min="0">
+                </div>
+                <div class="mb-3">
+                    <label for="defectType" class="form-label">Defect Type:</label>
+                    <input type="text" id="defectType" name="defectType" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="passFailStatus" class="form-label">Pass/Fail Status:</label>
+                    <select id="passFailStatus" name="passFailStatus" class="form-control" required>
+                        <option value="PASS">Pass</option>
+                        <option value="FAIL">Fail</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <!-- Financial and Operational Metrics -->
+            <fieldset class="mt-4">
+                <legend>Financial and Operational Metrics</legend>
+                <div class="mb-3">
+                    <label for="investmentCost" class="form-label">Investment Cost ($):</label>
+                    <input type="number" id="investmentCost" name="investmentCost" step="0.01" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="operatingCost" class="form-label">Operating Cost ($):</label>
+                    <input type="number" id="operatingCost" name="operatingCost" step="0.01" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="annualBenefits" class="form-label">Annual Benefits ($):</label>
+                    <input type="number" id="annualBenefits" name="annualBenefits" step="0.01" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="downtimeHoursSaved" class="form-label">Downtime Hours Saved:</label>
+                    <input type="number" id="downtimeHoursSaved" name="downtimeHoursSaved" step="0.01" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="maintenanceCostSavings" class="form-label">Maintenance Cost Savings ($):</label>
+                    <input type="number" id="maintenanceCostSavings" name="maintenanceCostSavings" step="0.01" class="form-control">
+                </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <div class="btn-group mt-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

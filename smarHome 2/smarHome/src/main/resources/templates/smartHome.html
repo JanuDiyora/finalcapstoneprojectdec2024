@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home ROI Calculator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <form action="/submit" method="post">
+        <h2>Smart Home ROI Calculator</h2>
+
+        <fieldset>
+            <legend>Home Information</legend>
+            <div class="form-group">
+                <label for="rooms">Number of Rooms:</label>
+                <input type="number" id="rooms" name="rooms" value="1" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Smart Devices</legend>
+            <div class="form-group">
+                <label for="robotVacuums">Number of Robot Vacuums:</label>
+                <input type="number" id="robotVacuums" name="robotVacuums" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="lawnMowers">Number of Smart Lawn Mowers:</label>
+                <input type="number" id="lawnMowers" name="lawnMowers" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="smartBulbs">Number of Smart Bulbs:</label>
+                <input type="number" id="smartBulbs" name="smartBulbs" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="switches">Number of Smart Switches and Dimmers:</label>
+                <input type="number" id="switches" name="switches" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="thermostats">Number of Learning Thermostats:</label>
+                <input type="number" id="thermostats" name="thermostats" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="ventSystems">Number of Smart Vent Systems:</label>
+                <input type="number" id="ventSystems" name="ventSystems" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="assistants">Number of Voice-Controlled Assistants:</label>
+                <input type="number" id="assistants" name="assistants" value="1" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Costs and Financials</legend>
+            <div class="form-group">
+                <label for="avenue">Avenue:</label>
+                <input type="text" id="avenue" name="avenue">
+            </div>
+            <div class="form-group">
+                <label for="totalInvestment">Total Investment:</label>
+                <input type="number" id="totalInvestment" name="totalInvestment" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year">
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

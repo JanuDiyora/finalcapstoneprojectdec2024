@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ROI Results Showcase</title>
+    <link rel="stylesheet" href="/css/result.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Home ROI Calculation</h1>
+        </header>
+
+        <section class="results-section">
+            <div class="table-container">
+                <h2>Results:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Investment Costs</td>
+                            <td th:text="${totalInvestment}"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Annual Revenue</td>
+                            <td th:text="${totalAvenue}"></td>
+                        </tr>
+                        <tr>
+                            <td>Total Operational Cost</td>
+                            <td th:text="${totalOperationalCost}"></td>
+                        </tr>
+                        <tr>
+                            <td>ROI (%)</td>
+                            <td th:text="${roi} + '%'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="button-group">
+					<a href="/form" class="button">Back to Form</a>
+
+                    <button onclick="generatePDF()" class="button">Create Report (PDF)</button>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="roiChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script th:inline="javascript">
+        // Chart.js configuration
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        const roiChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Total Investment Costs', 'Annual Operating Costs', 'Total Annual Benefits'],
+                datasets: [{
+                    label: 'Amount ($)',
+                    data: [
+                        [[${totalInvestment}]], 
+                        [[${totalAvenue}]], 
+                        [[${totalOperationalCost}]]
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Placeholder function for generating PDF
+        function generatePDF() {
+            alert("This will generate a PDF report (Implementation required)");
+        }
+    </script>
+
+</body>
+</html>

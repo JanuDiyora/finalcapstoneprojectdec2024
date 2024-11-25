@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Building ROI Calculator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+		<form action="/BuildingInfra" method="post">
+        <h2>Smart Building ROI Calculator</h2>
+
+        <fieldset>
+            <legend>Building Information</legend>
+            <div class="form-group">
+                <label for="numberOfBuilding">Number of Buildings:</label>
+                <input type="number" id="numberOfBuilding" name="numberOfBuilding" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Smart Facilities</legend>
+            <div class="form-group">
+                <label for="numberOfmeter">Number of Smart Meters:</label>
+                <input type="number" id="numberOfmeter" name="numberOfmeter" min="0">
+            </div>
+            <div class="form-group">
+                <label for="numberOfGym">Number of Gyms:</label>
+                <input type="number" id="numberOfGym" name="numberOfGym" min="0">
+            </div>
+            <div class="form-group">
+                <label for="numberOfPool">Number of Swimming Pools:</label>
+                <input type="number" id="numberOfPool" name="numberOfPool" min="0">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Costs and Financials</legend>
+            <div class="form-group">
+                <label for="avenue">Avenue:</label>
+                <input type="text" id="avenue" name="avenue">
+            </div>
+            <div class="form-group">
+                <label for="totalInvestment">Total Investment:</label>
+                <input type="number" id="totalInvestment" name="totalInvestment" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year">
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

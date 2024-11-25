@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Smart Inventory Results</title>
+    <link rel="stylesheet" href="/css/result.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Inventory Management Results</h1>
+        </header>
+
+        <section class="results-section">
+            <div class="table-container">
+                <h2>Inventory Overview:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Inventory Value</td>
+                            <td th:text="${totalValue}">$12,000</td>
+                        </tr>
+                        <tr>
+                            <td>Available Quantity</td>
+                            <td th:text="${totalQuantity}">300</td>
+                        </tr>
+                        <tr>
+                            <td>Stock Status</td>
+                            <td th:text="${stockStatus}">Available</td>
+                        </tr>
+                        <tr>
+                            <td>Category</td>
+                            <td th:text="${category}">Robotic Arm</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="button-group">
+                    <a href="/SmartInventory" class="button">Back to Inventory</a>
+                    <button onclick="generatePDF()" class="button">Create Report (PDF)</button>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="inventoryChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script th:inline="javascript">
+        // Chart.js configuration
+        const ctx = document.getElementById('inventoryChart').getContext('2d');
+        const inventoryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Total Value', 'Total Quantity', 'Reorder Level'],
+                datasets: [{
+                    label: 'Metrics',
+                    data: [12000, 300, 50], // Example static data; replace with dynamic data
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Placeholder function for generating PDF
+        function generatePDF() {
+            alert("This will generate a PDF report (Implementation required)");
+        }
+    </script>
+</body>
+</html>

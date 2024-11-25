@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Highway ROI Calculator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<form action="/smartHighwayresult" method="post">
+		       <h2>Smart HighWay ROI Calculator</h2>
+
+		      
+			   <fieldset>
+			              <legend>Number Of Smart Facilities</legend>
+			              <div class="form-group">
+			                  <label for="numberOfsmartMang">Number of Smart Traffic Management Systems:</label>
+			                  <input type="number" id="numberOfsmartMang" name="numberOfsmartMang" min="0">
+			              </div>
+						  <div class="form-group">
+						  	<label for="numberOflightSys">Number of Smart Lighting Systems:</label>
+						  	<input type="number" id="numberOflightSys" name="numberOflightSys" min="0">
+						  </div>
+						  <div class="form-group">
+						  	<label for="numberOfcctv">Number of CCTV and Surveillance Systems:</label>
+						  	<input type="number" id="numberOfcctv" name="numberOfcctv" min="0">
+						  </div>
+						  <div class="form-group">
+						  	<label for="numberOfVehicleCom">Number of Vehicle-to-Infrastructure Communication Systems:</label>
+						     <input type="number" id="numberOfVehicleCom" name="numberOfVehicleCom" min="0">
+						  </div> 
+						  <div class="form-group">
+						  	<label for="numberOfSolarPanel">Number of Solar Panels for Energy :</label>
+						  	<input type="number" id="numberOfSolarPanel" name="numberOfSolarPanel" min="0">
+						  </div> 
+						  <div class="form-group">
+						    <label for="numberOfDisplay">Number of Smart Signage and Displays:</label>
+								<input type="number" id="numberOfDisplay" name="numberOfDisplay" min="0">
+						</div>  	          
+			          </fieldset>
+		       <fieldset>
+		           <legend>Costs and Financials</legend>
+				   
+				
+		           <div class="form-group">
+		               <label for="avenue">Avenue:</label>
+		               <input type="text" id="avenue" name="avenue">
+		           </div>
+		           <div class="form-group">
+		               <label for="totalInvestment">Total Investment:</label>
+		               <input type="number" id="totalInvestment" name="totalInvestment" step="0.01">
+		           </div>
+		          
+		           <div class="form-group">
+		               <label for="year">Year:</label>
+		               <input type="number" id="year" name="year">
+		           </div>
+		       </fieldset>
+
+		       <button type="submit">Submit</button>
+		   </form>
+</body>
+</html> 
