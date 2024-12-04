@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+manufacturing/src/main/resources/application.properties
+smarHome 2/smarHome/src/main/resources/application.properties
+demo/src/main/resources/application.properties
+finalCapstoneProject/src/main/resources/application.properties
