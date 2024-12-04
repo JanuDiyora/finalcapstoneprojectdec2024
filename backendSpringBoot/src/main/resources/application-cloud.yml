@@ -3,10 +3,10 @@ application:
 
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=true&requireSSL=true
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/rpm_helthcare
+      username: root
+      password: 7400
 
   jpa:
     hibernate:

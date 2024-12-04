@@ -14,7 +14,7 @@ function IndustryGrid() {
         <IndustryCard title="Manufacturing" icon={<GiAbacus size={50} className="multicolor-icon" />} link="/manufacturing" />
         {/* <IndustryCard title="Healthcare" icon={<FaHospital size={50} className="multicolor-icon" />} link="/healthcare" /> */}
         {/* <IndustryCard title="Healthcare" icon={<FaHospital size={50} className="multicolor-icon" />} link="/http://localhost:8080/healthcare/healthcare-list" /> */}
-        <IndustryCard title="Healthcare" icon={<FaHospital size={50} className="multicolor-icon" />} link="http://localhost:8080/healthcare/healthcare-list" />
+        <IndustryCard title="Healthcare" icon={<FaHospital size={50} className="multicolor-icon" />} link="http://localhost:8011/healthcare/healthcare-list" />
         <IndustryCard title="Agriculture" icon={<GiBank size={50} className="multicolor-icon" />} link="/agriculture" />
         <IndustryCard title="Transportation" icon={<FaTruck size={50} className="multicolor-icon" />} link="/transportation" />
       </div>
